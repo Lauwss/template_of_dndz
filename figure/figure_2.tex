@@ -1,0 +1,27 @@
+\begin{tikzpicture}[node distance=2cm and 2cm, every node/.style={fill=white}, align=center]
+
+  % 主流程节点
+  \node (start) [startstop] {经典样本检测容量公式};
+  \node (p2) [process, left=of start] {置信度临界值};
+  \node (p1) [process, above  =of p2] {样本比例};
+  \node (p3) [process, below  =of p2] {容忍区间};
+  \node (p4) [process, above right=of start] {情形一样本容量};
+  \node (p5) [process, below right=of start] {情形二样本容量};
+  \begin{pgfonlayer}{background}
+    \node[draw=blue,dashed, thick, inner sep=12pt, fit=(p1) (p3)] {};
+  \end{pgfonlayer}
+  
+  \begin{pgfonlayer}{background}
+    \node[draw=red, dashed, thick, inner sep=12pt, fit =(p4)(p5)] {};
+  \end{pgfonlayer}
+  % 分类文字单独放
+  \node(text) [below=0.2cm of p3,text=blue] {\textbf{公式系数}};
+  \node[below=0.2cm of p5,text=red] {\textbf{抽样次数}};
+    \draw[<-,dashed] (start) |- node[midway]{标称值}(p1);
+   \draw[<-,dashed] (start) -- (p2);
+   \draw[<-,dashed] (start) |- node[midway]{经验值}(p3);
+   \draw[->] (start) --++(2.25,0) --node[midway] {置信度为95\%}(p4);
+   \draw[->] (start) --++(2.25,0) -- node[midway] {置信度为90\%}(p5);
+
+  
+\end{tikzpicture}

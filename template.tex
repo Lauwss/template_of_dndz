@@ -189,12 +189,32 @@ $p$ & 次品率 & - \\
 
 \section{问题一的模型的建立和求解}
 \subsection{模型建立}
-显然，该批零件中次品的分布符合二项分布，考虑零件总数量为$N$，抽样数为$n$，次品率为$p$，则可以表示为：
+\subsubsection{假设框架}
+根据题设条件，我们构建了如下假设框架:
+\begin{itemize}
+   \item 零假设$H_0$：样本比例$p$等于标称值$p_0$
+   \item 备择假设$H_1$：对于拒收情形，样本比例$p$大于标称值$p_0$；对于接受情形，样本比例$p$小于标称值$p_0$。
+\end{itemize}
+\subsubsection{样本容量公式}
+假设从总体中抽取容量为$n$的样本，记其中的次品个数为随机变量$X$，显然该变量服从二项分布
 \begin{equation}
-=\sum_{i=0}^{n} \binom{n}{i} p^i (1-p)^{n-i} 
+X\sim B(n,p)
 \end{equation}
-\subsection{模型求解}
+其中$p$为样本比例。根据中心极限定理，当$n$足够大时，$X$可以近似服从正态分布，即\begin{equation}
+X\sim N(np,np(1-p))
+\end{equation}
+进一步的，我们可确定样本中的次品率的统计量$\hat{p}$近似服从正态分布，即
+\begin{equation}
+\hat{p}\sim N(p,\frac{p(1-p)}{n})
+\end{equation}
+由上式我们可推导出经典样本检测容量公式
+\begin{equation}
+n=\frac{Z^2_{\alpha}p(1-p)}{d^2}
+\end{equation}
+其中$Z_{\alpha}$为置信区间在标准正态分布中的临界值，$\alpha$为置信度，$d$为容忍区间，一般取经验值。
 
+\subsection{模型求解}
+将题设条件代入上式，同时，我们取容忍区间为0.02，最终求得结果如下表
 \subsection{结果分析}
 
 
