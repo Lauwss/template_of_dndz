@@ -1,0 +1,283 @@
+\PassOptionsToPackage{quiet}{xeCJK}
+\documentclass[withoutpreface,bwprint]{cumcmthesis}
+
+\usepackage{geometry}
+\geometry{left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+
+% 中文字号调整
+\renewcommand{\rmdefault}{ptm}  % Times New Roman
+\zihao{-4}  % 四号
+\renewcommand{\arraystretch}{1.4}
+
+% 表格与排版
+\usepackage{tabularx}
+\usepackage{booktabs}  % 三线表
+\usepackage{makecell}  % \Xhline
+\usepackage{diagbox}   % 斜线表头
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\usepackage{etoolbox}
+\BeforeBeginEnvironment{tabular}{\zihao{-5}}
+
+% 数学公式
+\usepackage{amsmath,amssymb}
+
+% 文献管理
+\usepackage[numbers,sort&compress]{natbib}  
+
+% 链接、图形
+\usepackage{url}
+\usepackage{subcaption}  
+
+% TikZ 绘图
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows.meta, positioning, shapes.geometric, fit, backgrounds, decorations.text}
+
+% 框架
+\usepackage[framemethod=TikZ]{mdframed}
+
+% 自定义颜色与命令
+\definecolor{mygray}{RGB}{208,208,208}
+\definecolor{mymagenta}{RGB}{226,150,116}
+\newcommand*{\mytextstyle}{\sffamily\Large\bfseries\color{black!85}}
+
+\newcommand{\arcarrow}[3]{%
+   \pgfmathsetmacro{\rin}{1.7}
+   \pgfmathsetmacro{\rmid}{2.2}
+   \pgfmathsetmacro{\rout}{2.7}
+   \pgfmathsetmacro{\astart}{#1}
+   \pgfmathsetmacro{\aend}{#2}
+   \pgfmathsetmacro{\atip}{5}
+   \fill[mygray, very thick] (\astart+\atip:\rin)
+                         arc (\astart+\atip:\aend:\rin)
+      -- (\aend-\atip:\rmid)
+      -- (\aend:\rout)   arc (\aend:\astart+\atip:\rout)
+      -- (\astart:\rmid) -- cycle;
+   \path[
+      decoration = {
+         text along path,
+         text = {|\mytextstyle|#3},
+         text align = {align = center},
+         raise = -1.0ex
+      },
+      decorate
+   ](\astart+\atip:\rmid) arc (\astart+\atip:\aend+\atip:\rmid);
+}
+
+\tikzset{
+  >={Latex[width=2mm,length=2mm]},
+  base/.style = {rectangle, rounded corners, draw=black,
+                 minimum width=4cm, minimum height=1cm,
+                 text centered, font=\sffamily},
+  startstop/.style = {base, fill=red!30},
+  decision/.style = {diamond, draw, text centered, inner sep=0pt,
+                     minimum width=4cm, minimum height=1cm, aspect=2,
+                     font=\sffamily},
+  process/.style = {base, minimum width=3.5cm, fill=orange!15,
+                    font=\ttfamily},
+}
+
+% 文档基本信息
+\title{长江水质的综合评价与预测}
+\tihao{}
+\baominghao{}
+\schoolname{}
+\membera{}
+\memberb{}
+\memberc{}
+\supervisor{}
+\yearinput{}
+\monthinput{}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 正文
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\begin{abstract}
+
+
+
+\textbf{对于问题一,}
+
+
+   \keywords{} 
+
+\end{abstract}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+% \tableofcontents  % 目录
+% \newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+\pagenumbering{arabic}
+\section{问题重述}
+
+\subsection{问题背景}
+
+
+
+\subsection{题设数据}
+
+
+
+
+
+
+\subsection{需要解决问题}
+
+\textbf{问题一：}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\section{模型假设}
+\textbf{假设一：}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\newpage
+\section{符号说明}
+\begin{table}[H]
+\begin{center}
+ \begin{tabularx}{\textwidth}{XXX}
+\Xhline{2pt}
+\noalign{\vskip 1pt}
+\toprule
+符号    & 说明    & 单位 \\
+\midrule
+$x_{ij}$   & 第$i$个月的第$j$项指标值 &$mg/L$ \\
+$\tilde{x}_{ij}$     & 第$i$个月第$j$项指标的标准化值 & - \\
+$r_{ij}$     & 第$i$个月第$j$项指标的倒数 & $L/mg$\\
+$\boldsymbol{A}_{4\times4}$     &准则—目标判断矩阵& -\\
+$\boldsymbol{B}_{k}$     &方案—准则判断矩阵& -\\
+$s_{ij}^k$     &第$i$个观测点的$k$项指标与第$j$个观测点的$k$项指标比值& -\\
+$\mu_k$   & 第$k$项指标I类水质的标准值 &$mg/L$ \\
+$\sigma_k$   & 第$k$项指标的变权参数 & \\
+$w_k$&第$k$项指标的变权函数 &\\
+$L_{IV}^k$&第$k$项指标的IV类水质标准值&$mg/L$\\
+$W$   &水质综合评价函数 & \\
+$E$   &扩散系数 & \\
+$S$   &外部污染源输入项 & \\
+
+\bottomrule
+\noalign{\vskip 1pt}
+\Xhline{2pt}
+\end{tabularx}   
+\end{center}
+(其余符号详见正文)
+
+\end{table}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\section{问题分析}
+\subsection{对问题一的分析}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\section{问题一的模型的建立和求解}
+\subsection{模型建立}
+
+
+\subsection{模型求解}
+
+\subsection{结果分析}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\section{模型的评价}
+
+\subsection{模型的优点}
+\begin{itemize}[itemindent=2em]
+\item 优点1：
+\end{itemize}
+
+\subsection{模型的缺点}
+\begin{itemize}[itemindent=2em]
+\item 缺点1：
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{模型的改进与推广}
+
+\subsection{改进}
+\begin{itemize}[itemindent=2em]
+   \item 改进1：
+   \item 改进2：
+\end{itemize}
+
+
+\subsection{推广}
+\begin{itemize}[itemindent=2em]
+    \item 推广1：
+   \item 推广2：
+\end{itemize}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 参考文献
+\nocite{*}
+\bibliographystyle{gbt7714-numerical}  % 引用格式
+\bibliography{ref.bib}  % bib源
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 附录
+\begin{appendices}
+\section{文件列表}
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{LL}
+\toprule
+文件名   & 功能描述 \\
+\midrule
+ 第一问代码.py&问题一程序代码\\
+第二问.py & 问题二程序代码 \\
+第三及第四问代码.py&问题三与问题四程序代码\\
+
+\bottomrule
+\end{tabularx}
+\label{tab:文件列表}
+\end{table}
+
+\section{代码}
+\noindent 
+%  第一问代码.py
+% \lstinputlisting[language=python]{code/第一问代码.py}
+% 第二问.py
+% \lstinputlisting[language=python]{code/第二问.py}
+% 第三及第四问代码.py
+%  \lstinputlisting[language=lingo]{code/第三及第四问代码.py}
+
+
+\end{appendices}
+\end{document}
+
+
+%%%%%双图模板%%%%%%
+\begin{figure}
+\centering
+\subcaptionbox{炉温曲线示意图\label{fig:双图a}}
+{\includegraphics[width=.4\textwidth]{炉温曲线示意图.png}}
+\subcaptionbox{问题1炉温曲线\label{fig:双图b}}
+{\includegraphics[width=.4\textwidth]{问题1炉温曲线.png}}
+\caption{双图}\label{fig:双图}
+\end{figure} 
+%%%%%双图模板%%%%%%
