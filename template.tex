@@ -1,6 +1,7 @@
 \PassOptionsToPackage{quiet}{xeCJK}
 \documentclass[withoutpreface,bwprint]{cumcmthesis}
 
+
 \usepackage{geometry}
 \geometry{left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
 
@@ -79,7 +80,7 @@
 }
 
 % 文档基本信息
-\title{长江水质的综合评价与预测}
+\title{生产过程中的决策问题}
 \tihao{}
 \baominghao{}
 \schoolname{}
@@ -153,20 +154,14 @@
 \toprule
 符号    & 说明    & 单位 \\
 \midrule
-$x_{ij}$   & 第$i$个月的第$j$项指标值 &$mg/L$ \\
-$\tilde{x}_{ij}$     & 第$i$个月第$j$项指标的标准化值 & - \\
-$r_{ij}$     & 第$i$个月第$j$项指标的倒数 & $L/mg$\\
-$\boldsymbol{A}_{4\times4}$     &准则—目标判断矩阵& -\\
-$\boldsymbol{B}_{k}$     &方案—准则判断矩阵& -\\
-$s_{ij}^k$     &第$i$个观测点的$k$项指标与第$j$个观测点的$k$项指标比值& -\\
-$\mu_k$   & 第$k$项指标I类水质的标准值 &$mg/L$ \\
-$\sigma_k$   & 第$k$项指标的变权参数 & \\
-$w_k$&第$k$项指标的变权函数 &\\
-$L_{IV}^k$&第$k$项指标的IV类水质标准值&$mg/L$\\
-$W$   &水质综合评价函数 & \\
-$E$   &扩散系数 & \\
-$S$   &外部污染源输入项 & \\
-
+$n$ & 样本数 & - \\
+$Z_{\alpha}$ & 临界值 & - \\
+$\alpha$ & 置信度 & - \\
+$p_0$ & 标称值 & - \\
+$H_0$ & 零假设 & - \\
+$H_1$ & 备择假设 & - \\
+$X$ & 次品数量 & - \\
+$p$ & 次品率 & - \\
 \bottomrule
 \noalign{\vskip 1pt}
 \Xhline{2pt}
@@ -178,16 +173,26 @@ $S$   &外部污染源输入项 & \\
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-
+\newpage
 \section{问题分析}
 \subsection{对问题一的分析}
+题目要求我们在标称值确定的情况下，设计出一种合理的抽样检测方案，使得在给定的两种不同情形下，抽样的次数最小。要使抽样的次数最小，即使得抽样的样本容量最小即可。基于此，我们根据经典检验样本容量公式，结合题目的标称值得到理想样本比例，同时根据不同情形下的置信度确定临界值，最终计算出抽样次数。
+\begin{figure}[h]
+   \centering
+   \resizebox{0.8\linewidth}{!}{\input{figure/figure_1}}
+   \caption{第一问流程图}
+   \label{fig:one}
+\end{figure}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
 \section{问题一的模型的建立和求解}
 \subsection{模型建立}
-
-
+显然，该批零件中次品的分布符合二项分布，考虑零件总数量为$N$，抽样数为$n$，次品率为$p$，则可以表示为：
+\begin{equation}
+=\sum_{i=0}^{n} \binom{n}{i} p^i (1-p)^{n-i} 
+\end{equation}
 \subsection{模型求解}
 
 \subsection{结果分析}
@@ -272,12 +277,12 @@ $S$   &外部污染源输入项 & \\
 
 
 %%%%%双图模板%%%%%%
-\begin{figure}
-\centering
-\subcaptionbox{炉温曲线示意图\label{fig:双图a}}
-{\includegraphics[width=.4\textwidth]{炉温曲线示意图.png}}
-\subcaptionbox{问题1炉温曲线\label{fig:双图b}}
-{\includegraphics[width=.4\textwidth]{问题1炉温曲线.png}}
-\caption{双图}\label{fig:双图}
-\end{figure} 
+% \begin{figure}
+% \centering
+% \subcaptionbox{炉温曲线示意图\label{fig:双图a}}
+% {\includegraphics[width=.4\textwidth]{炉温曲线示意图.png}}
+% \subcaptionbox{问题1炉温曲线\label{fig:双图b}}
+% {\includegraphics[width=.4\textwidth]{问题1炉温曲线.png}}
+% \caption{双图}\label{fig:双图}
+% \end{figure} 
 %%%%%双图模板%%%%%%
