@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.5.11)  2 AUG 2025 17:56
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.5.11)  2 AUG 2025 23:17
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1038,7 +1038,20 @@ LaTeX Font Info:    No file TUptm.fd. on input line 98.
 LaTeX Font Warning: Font shape `TU/ptm/m/n' undefined
 (Font)              using `TU/lmr/m/n' instead on input line 98.
 
-(./template.aux)
+(./template.aux
+
+LaTeX Warning: Label `fig:one' multiply defined.
+
+
+LaTeX Warning: Label `fig:one@cref' multiply defined.
+
+
+LaTeX Warning: Label `fig:one' multiply defined.
+
+
+LaTeX Warning: Label `fig:one@cref' multiply defined.
+
+)
 \openout1 = `template.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 98.
@@ -1167,28 +1180,70 @@ LaTeX Font Warning: Font shape `TU/ptm/b/n' undefined
 [1
 
 ]
+LaTeX Font Info:    Calculating math sizes for size <12.05> on input line 138.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 138.
+ (d:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 138.
+ (d:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
 
-[1] (d:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd) (d:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd)
+[1]
 
 [2] (./figure/figure_1.tex)
 
 LaTeX Font Warning: Font shape `TU/SimSun(1)/b/n' undefined
-(Font)              using `TU/SimSun(1)/m/n' instead on input line 194.
+(Font)              using `TU/SimSun(1)/m/n' instead on input line 208.
 
+(./figure/figure_2.tex
+\pgf@layerbox@backgroundblue=\box99
+\pgf@layerboxsaved@backgroundblue=\box100
+\pgf@layerbox@backgroundred=\box101
+\pgf@layerboxsaved@backgroundred=\box102
+)
 
+[3] (./figure/figure_3.tex)
 
-[3]
-
-[4] (./template.bbl)
+[4]
 
 [5]
+File: figure/OC_curve_1.png Graphic file (type bmp)
+<figure/OC_curve_1.png>
+File: figure/OC_curve_2.png Graphic file (type bmp)
+<figure/OC_curve_2.png>
 
-Package caption Warning: Unused \captionsetup[sub] on input line 33.
-See the caption package documentation for explanation.
+
+[6]
+
+[7] (./template.bbl)
+
+[8] (d:/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2024/09/23 1.10c listings language file
+)
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 381.
+ (./code/exercise_1.py) (./code/exercise_2.py
+
+[9]
+
+[10]
+
+[11]) (./code/exercise_3.py
+
+[12]
+
+[13]
+
+[14]
+
+[15]
+Missing character: There is no 📊 (U+1F4CA) in font [YaHei.Consolas.1.11b.ttf]/OT:language=dflt;!
 
 
+[16])
 
-[6] (./template.aux)
+[17] (./template.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2022/08/05>
@@ -1198,24 +1253,18 @@ L3 programming layer <2022/08/05>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were multiply-defined labels.
 
-
-Package rerunfilecheck Warning: File `template.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `template.out':
-(rerunfilecheck)             Before: D397774065EC54BA3DF07CC941E8E961;2400
-(rerunfilecheck)             After:  9BE530AB794BD504BB9030F8136A243B;2614.
+Package rerunfilecheck Info: File `template.out' has not changed.
+(rerunfilecheck)             Checksum: 6FB5FF7912C7AC113FA91905E9158DBC;3161.
  ) 
 Here is how much of TeX's memory you used:
- 36131 strings out of 470249
- 762216 string characters out of 5487938
- 1169346 words of memory out of 5000000
- 62074 multiletter control sequences out of 15000+600000
- 636942 words of font info for 146 fonts, out of 8000000 for 9000
+ 36826 strings out of 470249
+ 779408 string characters out of 5487938
+ 1857535 words of memory out of 5000000
+ 62739 multiletter control sequences out of 15000+600000
+ 644399 words of font info for 179 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 108i,12n,125p,537b,930s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 108i,13n,125p,537b,2175s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on template.pdf (7 pages).
+Output written on template.pdf (18 pages).

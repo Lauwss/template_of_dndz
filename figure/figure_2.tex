@@ -1,27 +1,51 @@
 \begin{tikzpicture}[node distance=2cm and 2cm, every node/.style={fill=white}, align=center]
+\pgfdeclarelayer{backgroundblue}
+\pgfdeclarelayer{backgroundred}
+\pgfsetlayers{backgroundblue,backgroundred,main}
+% Step 1: 零件检测
+\node (start) [startstop] {流程开始};
+\node (p_detect) [decision, below=of start] {是否检测零件？};
 
-  % 主流程节点
-  \node (start) [startstop] {经典样本检测容量公式};
-  \node (p2) [process, left=of start] {置信度临界值};
-  \node (p1) [process, above  =of p2] {样本比例};
-  \node (p3) [process, below  =of p2] {容忍区间};
-  \node (p4) [process, above right=of start] {情形一样本容量};
-  \node (p5) [process, below right=of start] {情形二样本容量};
-  \begin{pgfonlayer}{background}
-    \node[draw=blue,dashed, thick, inner sep=12pt, fit=(p1) (p3)] {};
-  \end{pgfonlayer}
-  
-  \begin{pgfonlayer}{background}
-    \node[draw=red, dashed, thick, inner sep=12pt, fit =(p4)(p5)] {};
-  \end{pgfonlayer}
-  % 分类文字单独放
-  \node(text) [below=0.2cm of p3,text=blue] {\textbf{公式系数}};
-  \node[below=0.2cm of p5,text=red] {\textbf{抽样次数}};
-    \draw[<-,dashed] (start) |- node[midway]{标称值}(p1);
-   \draw[<-,dashed] (start) -- (p2);
-   \draw[<-,dashed] (start) |- node[midway]{经验值}(p3);
-   \draw[->] (start) --++(2.25,0) --node[midway] {置信度为95\%}(p4);
-   \draw[->] (start) --++(2.25,0) -- node[midway] {置信度为90\%}(p5);
+\node(p_discard_bad_1)[process,below=of p_detect] {检测后丢弃不合格零件};
+\node (p_assemble2) [process, below=of p_discard_bad_1] {零件装配};
 
-  
+% Step 2: 成品检测
+\node (p_product_check) [decision, right=4cm of p_assemble2] {是否检测成品？};
+\node (p_market) [process, right=of p_product_check] {市场};
+\node (p_bad_detect) [process, above=of p_product_check] {不合格品检测出};
+
+% Step 3: 拆解？
+\node (p_disassemble) [decision, above=of p_bad_detect] {是否拆解？};
+\node (p_discard_bad) [process, right=of p_disassemble] {丢弃成品};
+\node (p_return_parts) [process, above=of p_disassemble] {零件回收，重复检测};
+
+% Step 4: 用户退货
+\node (p_returned) [decision, above=of p_market] {是否顾客退货？};
+
+\node (p_end) [startstop, right=4cm of p_returned] {流程结束};
+
+% Arrows
+\draw [->] (start) -- (p_detect);
+\draw [->] (p_detect) -- ++(-4,0)|-node[midway,yshift=3.5cm] {否} (p_assemble2);
+\draw [->] (p_detect) -- node[above] {是} (p_discard_bad_1);
+\draw[->] (p_discard_bad_1) -- (p_assemble2);
+\draw [->] (p_assemble2) -- (p_product_check);
+\draw [->] (p_product_check) -- node[above] {否} (p_market);
+\draw [->] (p_product_check) -- node[left] {是} (p_bad_detect);
+\draw [->] (p_bad_detect) -- (p_disassemble);
+\draw [->] (p_disassemble) -- node[above] {否} (p_discard_bad);
+\draw [->] (p_disassemble) -- node[left] {是} (p_return_parts);
+\draw [->] (p_return_parts) -- (start);
+\draw [->] (p_returned) -- node[midway] {是} (p_bad_detect);
+\draw [->] (p_returned.east) --node[midway] {否}(p_end);
+\draw[->]   (p_market) -- (p_returned);
+% 背景框组（可选）
+% 蓝框：不合格品退回流程
+\node[draw=red, dashed, thick, inner sep=13pt, fit=(p_assemble2)(p_product_check)(p_bad_detect)(p_disassemble)(p_return_parts),fill=none] {};
+\node[draw=blue, dashed, thick, inner sep=23pt, fit=(p_discard_bad)(p_bad_detect)(p_returned)(p_return_parts),fill=none] {};
+
+% 分类说明
+\node[below=0.1cm of p_product_check, xshift=-2.5cm,text=red] {\textbf{成品处理流程}};
+\node[above=0.47cm of p_return_parts, xshift=5cm,text=blue] {\textbf{不合格品循环流程}};
+
 \end{tikzpicture}

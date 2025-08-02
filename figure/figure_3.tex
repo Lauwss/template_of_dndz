@@ -1,0 +1,54 @@
+\begin{tikzpicture}[node distance=2cm and 2cm, every node/.style={fill=white}, align=center]
+\def\layersep{4cm}
+
+\tikzstyle{goal node}=[circle,fill=red!50,minimum size=18pt,inner sep=0pt]
+\tikzstyle{criteria node}=[circle,fill=blue!50,minimum size=18pt,inner sep=0pt]
+\tikzstyle{option node}=[circle,fill=green!50,minimum size=18pt,inner sep=0pt]
+\tikzstyle{annot} = [text width=4em, text centered]
+
+% 目标层
+\node[goal node] (G) at (0, 0) {};
+\node[below= 0.3cm of G] {期望利润};
+
+% 准则层（成本构成3个方面）
+\node[criteria node] (C1) at (\layersep, 2) {};
+\node[below= 0.3cm of C1] {收入};
+
+\node[criteria node] (C2) at (\layersep, -2) {};
+\node[below= 0.3cm of C2] {成本};
+
+
+
+% 目标->准则
+\foreach \x in {1,2}
+    \draw[->] (G) -- (C\x);
+
+% 方案层（可以细化各成本细节）
+\node[option node] (O0) at (2*\layersep, 3) {};
+\node[below= 0.3cm of O0] {期望收入};
+
+\node[option node] (O1) at (2*\layersep, 1) {};
+\node[below= 0.5cm of O1] {零件检测成本};
+
+\node[option node] (O2) at (2*\layersep, -1) {};
+\node[below= 0.3cm of O2] {成品检测成本};
+
+\node[option node] (O3) at (2*\layersep, -3) {};
+\node[below= 0.3cm of O3] {次品拆解成本};   
+
+\node[option node] (O4) at (2*\layersep, -5) {};
+\node[below= 0.3cm of O4] {次品调换损失};
+
+
+% 准则->方案（示意连接）
+\draw[->] (C1) -- (O0);
+\foreach \x in {1,2,3,4}
+    \draw[->] (C2) -- (O\x);
+
+% 层名注释
+\node[annot] at (0, 4) {一级结构};
+\node[annot] at (\layersep, 4) {二级结构};
+\node[annot] at (2*\layersep, 4) {三级结构};
+
+
+\end{tikzpicture}
