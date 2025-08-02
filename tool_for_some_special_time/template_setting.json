@@ -1,0 +1,142 @@
+{
+    // 通用设置
+    "remote.SSH.remotePlatform": {
+        "raspberrypi": "linux"
+    },
+    "workbench.colorTheme": "One Dark Pro",
+    "git.path": "D:/git/Git/cmd/git.exe",
+    "git.blame.editorDecoration.enabled": false,
+    "git.enableSmartCommit": true,
+    "git.openRepositoryInParentFolders": "always",
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    "fittencode.languagePreference.displayPreference": "zh-cn",
+    "fittencode.languagePreference.commentPreference": "zh-cn",
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "editor.unicodeHighlight.invisibleCharacters": false,
+    "editor.tabSize": 4,
+    "editor.wordWrap": "bounded",
+    "files.autoSave": "afterDelay",
+
+    // 默认将 .py 文件用默认编辑器打开
+    "workbench.editorAssociations": {
+        "*.copilotmd": "vscode.markdown.preview.editor",
+        "*.py": "default"
+    },
+
+    // PDF 预览设置
+    "latex-workshop.view.pdf.viewer": "tab",
+    "latex-workshop.showContextMenu": true,
+
+    // 语言校对插件 ltex 设置
+    "ltex.enabled": true,
+    "ltex.language": "en-US",
+
+    // 默认 LaTeX 编译链（recipe）
+    "latex-workshop.latex.recipe.default": "xelatex -> bibtex -> xelatex*2",
+
+    // LaTeX 编译器配置（tools）
+    "latex-workshop.latex.tools": [
+        {
+            "name": "xelatex",
+            "command": "xelatex",
+            "args": [
+                "--shell-escape",
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "pdflatex",
+            "command": "pdflatex",
+            "args": [
+                "--shell-escape",
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "bibtex",
+            "command": "bibtex",
+            "args": [
+                "%DOCFILE%"
+            ]
+        },
+        {
+            "name": "biber",
+            "command": "biber",
+            "args": [
+                "%DOCFILE%"
+            ]
+        },
+        {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": [
+                "--shell-escape",
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-pdf",
+                "-outdir=%OUTDIR%",
+                "%DOC%"
+            ]
+        }
+    ],
+
+    // 编译链（recipes）
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "xelatex -> bibtex -> xelatex*2",
+            "tools": [
+                "xelatex",
+                "bibtex",
+                "xelatex",
+                "xelatex"
+            ]
+        },
+        {
+            "name": "xelatex -> biber -> xelatex*2",
+            "tools": [
+                "xelatex",
+                "biber",
+                "xelatex",
+                "xelatex"
+            ]
+        },
+        {
+            "name": "pdflatex -> bibtex -> pdflatex*2",
+            "tools": [
+                "pdflatex",
+                "bibtex",
+                "pdflatex",
+                "pdflatex"
+            ]
+        },
+        {
+            "name": "latexmk",
+            "tools": [
+                "latexmk"
+            ]
+        },
+        {
+            "name": "xelatex",
+            "tools": [
+                "xelatex"
+            ]
+        }
+    ],
+
+    // latexindent（代码格式化工具）路径（仅 Linux 示例）
+    "latex-workshop.latexindent.path": "/usr/local/texlive/2024/bin/x86_64-linux/latexindent",
+
+    // PDF 预览使用 latexmk 命令（可选）
+    "latex-preview.command": "latexmk",
+
+    // 失败重试设置
+    "latex-workshop.latex.autoBuild.cleanAndRetry.enabled": true
+}
