@@ -174,9 +174,9 @@ ItalicFont = Fira Code Retina Nerd Font Complete.otf     % to avoid font warning
 \setmainfont{Times New Roman}
 %\setmonofont{Courier New}
 \setsansfont{Arial}
-\setCJKfamilyfont{kai}[AutoFakeBold]{simkai.ttf}
+\setCJKfamilyfont{kai}{YaHei.Consolas.1.11b.ttf}
 \newcommand*{\kai}{\CJKfamily{kai}}
-\setCJKfamilyfont{song}[AutoFakeBold]{SimSun}
+\setCJKfamilyfont{song}{SimSun}
 \newcommand*{\song}{\CJKfamily{song}}
 
 \renewcommand\normalsize{%
